@@ -1,4 +1,4 @@
-# Project Title
+# Hackerrank
 
 Solutions to hacker-rank questions in node.js
 
