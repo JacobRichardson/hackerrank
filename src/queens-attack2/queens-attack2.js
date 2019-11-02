@@ -88,7 +88,77 @@ function queensAttack(opts) {
     // Variable for the number of possible attacks. This is what is going to be returned.
     let numPossibleAttacks;
 
-    //TODO: Implement solution here.
+    // Set the number of upwards moves equal to the board size minus the row the queen is on.
+    let numUpwards = boardSize - rowQueenPOS;
+
+    // Set the number of downward moves equal to the board size minus the number of 
+    // upward moves minus 1. (Account for the queen herself).
+    let numDownwards = boardSize - numUpwards - 1;
+
+    // Set the number of rightward moves equal to the board size minus the col the queen is on.
+    let numRightwards = boardSize - colQueenPos;
+
+    // Set the number of leftward moves equal to the board size minus the number of 
+    // rightward moves minus 1. (Account for the queen herself).
+    let numLeftwards = boardSize - numRightwards - 1;
+
+    // For each obstacle in obstacles.
+    for (let obstacle of obstacles) {
+
+        // If first element (row) is greater then the queens row (the obstacle is above the queen)
+        // and the second element (col) in obstacle is equal to the queens column and the row minus
+        // the queens row minus 1 is greater than the current number of upward moves.
+        if (obstacle[0] > rowQueenPOS && obstacle[1] === colQueenPos && (obstacle[0] - rowQueenPOS - 1) < numUpwards) {
+
+            // Set the number of upwards moves equal to the row of the obstacle minus the queen's row minus 1.
+            numUpwards = obstacle[0] - rowQueenPOS - 1;
+        }
+
+        // If first element (row) is less then the queens row (the obstacle is below the queen)
+        // and the second element (col) in obstacle is equal to the queens column and the queens row
+        // minus the row minus 1 is greater than the current number of downward moves.
+        if (obstacle[0] < rowQueenPOS && obstacle[1] === colQueenPos && (rowQueenPOS - obstacle[0] - 1) < numDownwards) {
+
+            // Set the number of downward moves equal to the row of the obstacle minus the queen's row minus 1.
+            numDownwards = rowQueenPOS - obstacle[0] - 1;
+        }
+
+        // If the second element (col) is greater than the queens col (the obstacle is to the right of the queen)
+        // and the first element (row) in obstacle is equal to the queens row and the column minus 
+        // the queens col minus 1 is greater than the current number of rightward moves.
+        if (obstacle[1] > colQueenPos && obstacle[0] === rowQueenPOS && (obstacle[1] - colQueenPos - 1) < numRightwards) {
+
+            // Set the number of rightwards moves equal to the col of the obstacle minus the queen's col minus 1.
+            numRightwards = obstacle[1] - colQueenPos - 1;
+
+        }
+
+        // If the second element (col) is less than the queens col (the obstacle is to the left of the queen)
+        // and the first element (row) in obstacle is equal to the queens row and the column minus 
+        // the queens col minus 1 is greater than the current number of leftward moves.
+        if (obstacle[1] < colQueenPos && obstacle[0] === rowQueenPOS && (obstacle[1] - colQueenPos - 1) < numLeftwards) {
+
+            // Set the number of rightwards moves equal to the col of the obstacle minus the queen's col minus 1.
+            numLeftwards = colQueenPos - obstacle[1] - 1;
+        }
+
+        // TODO: Implement Diagonal. Might be able to tell diagonal if the have the same two points have the same slope.
+    }
+
+    // If num upwards is less than zero set it equal to zero.
+    numUpwards = numUpwards < 0 ? 0 : numUpwards;
+
+    // If num downwards is less than zero set it equal to zero.
+    numDownwards = numDownwards < 0 ? 0 : numDownwards;
+
+    // If num rightwards is less than zero set it equal to zero.
+    numRightwards = numRightwards < 0 ? 0 : numRightwards;
+
+    // If num leftwards is less than zero set it equal to zero.
+    numLeftwards = numLeftwards < 0 ? 0 : numLeftwards;
+
+    // Set number of possible attacks equal to the upward moves added to downward moves.
+    numPossibleAttacks = numUpwards + numDownwards + numLeftwards + numRightwards;
 
     // Return possible Attacks
     return numPossibleAttacks;

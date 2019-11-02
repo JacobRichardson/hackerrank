@@ -61,6 +61,17 @@ testCreator('queens-attack2',
                     rowQueenPOS: 1,
                     colQueenPos: 2,
                     obstacles: []
+                },
+                {
+                    boardSize: 5,
+                    numObstacles: 3,
+                    rowQueenPOS: 3,
+                    colQueenPos: 3,
+                    obstacles: [
+                        [5, 3],
+                        [2, 3],
+                        [3, 2],
+                    ]
                 }
             ],
             output: [
@@ -69,7 +80,8 @@ testCreator('queens-attack2',
                 0,
                 1,
                 2,
-                3
+                3,
+                3 // TODO: Change once diagonals are accounted for.
             ]
         }
     ]
