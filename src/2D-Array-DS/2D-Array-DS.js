@@ -11,15 +11,6 @@
 // Export the function.
 module.exports = maxHourglassSum;
 
-console.log(maxHourglassSum([
-  [-1, 1, -1, 0, 0, 0],
-  [0, -1, 0, 0, 0, 0],
-  [-1, -1, -1, 0, 0, 0],
-  [0, -9, 2, -4, -4, 0],
-  [-7, 0, 0, -2, 0, 0],
-  [0, 0, -1, -2, -4, 0]
-]))
-
 /**
  * Calculates the highest hourglass sum in 
  * a 2D array.
