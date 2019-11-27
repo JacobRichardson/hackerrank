@@ -1,6 +1,6 @@
 {
   "name": "hackerrank",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Implementations of hackerrank questions in node.js",
   "main": "index.js",
   "scripts": {
